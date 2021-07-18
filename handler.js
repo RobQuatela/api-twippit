@@ -29,9 +29,10 @@ const scrapeTwitterProfile = async (profile) => {
     const app = document.querySelector('#react-root');
     const profileEl = app.querySelector('div.css-1dbjc4n.r-1ifxtd0.r-ymttw5.r-ttdzmv');
 
-    const avatarUrl = profileEl
-      .querySelector('a')
-      .href;
+    const avatar = Array.from(profileEl.querySelectorAll('a')).find(x => x.href.includes('photo'));
+    const avatarUrl = avatar
+      .querySelector('img')
+      .src;
 
     const handle = Array.from(profileEl.querySelectorAll('span.css-901oao.css-16my406.r-poiln3.r-bcqeeo.r-qvutc0')).find(x => x.innerText.includes('@')).innerText;
 
