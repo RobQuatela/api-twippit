@@ -2,12 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const handler = require('./handler');
+const cors = require('cors');
 
 dotenv.config();
 
 const app = express();
-app.use(bodyParser.json());
 
+app.use(bodyParser.json());
+app.use(cors());
 /**
  * testing web server to ensure it works on your machine
  */

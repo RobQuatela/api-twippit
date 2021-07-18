@@ -8,10 +8,11 @@ const scrapeTwitterProfile = (profile) => {
   return {
     location: 'Alpharetta, GA',
     name: 'AlpharettaJS',
+    description: '',
     avatarUrl: 'https://secure-content.meetupstatic.com/images/https%3A%2F%2Fsecure.meetupstatic.com%2Fphotos%2Fevent%2Fd%2F7%2F7%2F3%2Fhighres_472915155.jpeg/56x56.jpg',
     followerCount: 0,
     followingCount: 0,
-    joinAt: 'April, 2018',
+    joinedAt: 'April, 2018',
     twitterHandle: '@alpharettaJS',
   };
 }
