@@ -8,8 +8,12 @@ dotenv.config();
 
 const app = express();
 
+/**
+ * setting up middleware
+ */
 app.use(bodyParser.json());
 app.use(cors());
+
 /**
  * testing web server to ensure it works on your machine
  */
@@ -19,11 +23,15 @@ app.get('/ping', (req, res) => {
 
 /**
  * route used to lookup and scrape Twitter profile
- * @param {string} profile - profile name inside of Twitter URL
+ * @param {string} handle - profile name inside of Twitter URL
  */
-app.post('/profiles/:profile', async (req, res) => {
-  const result = await handler.scrapeTwitterProfile(req.params.profile);
-  res.send(result);
+app.post('/handles/:handle', async (req, res, next) => {
+  try {
+    const result = await handler.scrapeTwitterProfile(req.params.handle);
+    res.send(result);
+  } catch (e) {
+    next(e);
+  }
 });
 
 
