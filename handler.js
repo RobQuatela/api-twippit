@@ -1,7 +1,7 @@
 /**
- * scrapes twitter profile to get name, avatar, follower count, following count, join date, Twitter handle, and location
+ * scrapes twitter profile to get name, avatar, follower count, following count, join date, and Twitter handle
  * @param {string} handle - name of twitter profile in url
- * @return {{name: string, avatarUrl: string, followerCount: Number, followingCount: Number, joinAt: string, handle: string}}
+ * @return {{avatarUrl: string, joinedAt: string, name: string, description: string, handle: string, followerCount: number, followingCount: number, url: string}}
  */
 const scrapeTwitterProfile = (handle) => {
 
