@@ -22,15 +22,14 @@ const scrapeTwitterProfile = async (handle) => {
   await page.goto(`https://twitter.com/${handle}`);
   await page.waitForSelector('div.css-1dbjc4n.r-1ifxtd0.r-ymttw5.r-ttdzmv', {timeout: 10000});
 
-  if (process.env.ENV === 'development')
-    await page.on('console', msg => console.log(msg._text));
+  await page.on('console', msg => console.log(msg._text));
 
   const profileResult = await page.evaluate(() => {
     const app = document.querySelector('#react-root');
     const profileEl = app.querySelector('div.css-1dbjc4n.r-1ifxtd0.r-ymttw5.r-ttdzmv');
 
-    const avatar = Array.from(profileEl.querySelectorAll('a')).find(x => x.href.includes('photo'));
-    const avatarUrl = avatar
+    const avatarEl = Array.from(profileEl.querySelectorAll('a')).find(x => x.href.includes('photo'));
+    const avatarUrl = avatarEl
       .querySelector('img')
       .src;
 
@@ -41,9 +40,9 @@ const scrapeTwitterProfile = async (handle) => {
     const descriptionEl = profileEl.querySelector('[data-testid="UserDescription"]');
     const description = descriptionEl !== null ? descriptionEl.querySelector('span').innerText : 'Description not available';
 
-    const profileHeader = profileEl.querySelector('[data-testid="UserProfileHeader_Items"]');
+    const profileHeaderEl = profileEl.querySelector('[data-testid="UserProfileHeader_Items"]');
 
-    const joinedAt = Array.from(profileHeader.querySelectorAll('span')).find(x => x.innerText.includes('Joined')).innerText;
+    const joinedAt = Array.from(profileHeaderEl.querySelectorAll('span')).find(x => x.innerText.includes('Joined')).innerText;
 
     const followingLink = Array.from(app.querySelectorAll('a')).find(x => x.href.includes('following'));
     const followingCount = Array.from(followingLink.querySelectorAll('span')).find(x => x.innerText !== null).innerText;
