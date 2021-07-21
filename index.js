@@ -1,10 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
 const handler = require('./handler');
 const cors = require('cors');
-
-dotenv.config();
 
 const app = express();
 
@@ -35,6 +32,6 @@ app.post('/handles/:handle', async (req, res, next) => {
 });
 
 
-app.listen(process.env.PORT || 3500, () => {
-  console.log(`listening on ${process.env.PORT}`);
+app.listen(3500, () => {
+  console.log(`listening on 3500`);
 });
